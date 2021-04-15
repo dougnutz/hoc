@@ -1,8 +1,10 @@
 #include <Arduino.h>
 
 
-const int red = 14; 
-const int blue = 12;
+const int green = 14; 
+const int blue = 13;
+const int on = PWMRANGE;
+const int off = LOW;
 
 void printOut(String s){
   Serial.println(s);
@@ -16,12 +18,15 @@ void setup() {
 void loop() {
 
     printOut("begin loop");
-    analogWrite(red, PWMRANGE);
-    analogWrite(blue, LOW);
-    delay(500);
+    printOut("green on");
+    analogWrite(green, on);
 
-    analogWrite(red, LOW);
-    analogWrite(blue, PWMRANGE);
-    delay(500);
-               
+// delay 1000
+
+    printOut("green off");
+analogWrite(green, off);
+
+ delay(500);
+
+
 }

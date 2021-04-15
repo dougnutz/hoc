@@ -5,7 +5,8 @@
 #include <WiFiClient.h>
 
 ESP8266WiFiMulti WiFiMulti;
-
+const int red =2 ;
+const int green =5 ;
 char ssid[] = "LHome";     //  your network SSID (name)
 char pass[] = "DougAndErikaWireless";  // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
@@ -25,7 +26,7 @@ void printOut(String s){
   Serial.println(s);
 }
 
-
+//returns true if it is open
 bool getGateState(){
   if ((WiFiMulti.run() == WL_CONNECTED)) {
     WiFiClient client;
@@ -64,27 +65,29 @@ bool getGateState(){
   return false;
 }
 
+
+
 // the loop function runs over and over again forever
 void loop() {
-   bool shouldOpen = getGateState();
-   printOut(String(shouldOpen));
-
-   if(shouldOpen){
-    digitalWrite(LED_BUILTIN, LOW);   // Turn the LED on (Note that LOW is the voltage level
-  // but actually the LED is on; this is because
-  // it is active low on the ESP-01)
-  printOut("gate open");
+  //define a variable (bool) to hold the value of the getGateState()
+bool boby = getGateState();
+  //if it is is open turn on the green  hint define the green
+if(boby){
+   analogWrite(green,500);
+     analogWrite(red,0);
 }
+ //else turn on red
 else{ 
-  //otherwise turn it off
-   delay(1000);                      // Wait for a second
-   digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off by making the voltage HIGH
-   printOut("gate closed");
+  analogWrite(red,500);
+  analogWrite(green,0);
+}
+  //wait 5 sec and check again 
+delay(5000);
 }
 
-  delay(5000);  
-  printOut(String("end loop :') " + String(count++)));
 
-}
+ 
+
+
 
 
