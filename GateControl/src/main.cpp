@@ -10,7 +10,7 @@ ESP8266WiFiMulti WiFiMulti;
 char ssid[] = "LHome";     //  your network SSID (name)
 char pass[] = "DougAndErikaWireless";  // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
-char gateUrl[]="http://dtipsstore.table.core.windows.net/gate(PartitionKey='gate',RowKey='state')?sv=2019-12-12&ss=t&srt=sco&sp=rwdlacu&se=2022-01-22T03:04:00Z&st=2021-01-20T19:04:00Z&spr=https,http&sig=CpEls%2FxLL5dYPLnbcnEnXBBMngsDlWcwLcfW6twdmwg%3D";
+char gateUrl[]="http://dtipsstore.table.core.windows.net/gate(PartitionKey='gate',RowKey='state')?sv=";
 
 const int buttonPin = 4; /* GPIO4 (D2) for Push Button */
 const int ledPin = 5; /* GPIO5 (D1) for LED */
