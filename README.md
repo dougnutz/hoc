@@ -1,5 +1,6 @@
 # hoc
 ## pre-requisite (windows setup)
+- install git for [windows](https://gitforwindows.org/) 
 - install [arduino UI](https://www.arduino.cc/en/software)
   - pick windows store option
   - Open arduino IDE and verify it loads
@@ -9,6 +10,19 @@
     - search for 'vscode-arduino'
     - click install
     - close and reopen VS code (just to be sure everything is installed correctly)
+- clone the HOC repository
+  - press the windows key and type cmd+ enter
+  - navigate to c:/ (type cd \ + enter)
+  - create a src directory if it doesn't already exist (eg type `md src`)
+  - change to that directory ('cd src' + enter)
+  - clone the repository type 'git clone https://github.com/dougnutz/hoc.git'
+## Checkpoint
+  - In VS Code click open folder (or ctrl+k, ctrl+O)
+    - in the file window pick the blink2 folder from the hoc directory just cloned (eg 'C:\src\hoc\Blink2')
+    - If prompted click trust authors
+    - In the explore menu under blink 2, navigate to src > main.cpp
+      - Recommend, if prmpted to install extensions for c++
+      - Also recommended to configure intellisense (if prompted)
   - Setup compiler optsions
     - Click on < Select Programmer > and select AVR ISP (Arduino AVR Board)  
     - Click on < Select Board Type > and select Arduino/Genuino Uno
