@@ -1,9 +1,22 @@
 # hoc
+## Hardware
+- on top of the software tooling we need a ESP8266 compatible arduino (eg. ESP8266 NodeMCU CP2102 ESP-12E). Other arduino chips will likely work also.
 ## pre-requisite (windows setup)
 - install git for [windows](https://gitforwindows.org/) 
 - install [arduino UI](https://www.arduino.cc/en/software)
   - pick windows store option
   - Open arduino IDE and verify it loads
+    - proceed to setup the arduino IDE for use with teh ESP8266 board 
+    - https://create.arduino.cc/projecthub/electropeak/getting-started-w-nodemcu-esp8266-on-arduino-ide-28184f
+    - try the blink application
+      - select your board from Tools > Board > ESP8266
+      - select the blink example from File > Examples > ESP8266 >Blink
+## Checkpoint
+  - With the blink example loaded
+  - Make sure your board is connected to your computer with a USB cable
+  - If you need a driver [Here](https://github.com/nodemcu/nodemcu-devkit/blob/master/Drivers/CH341SER_WINDOWS.zip)
+
+## Using VSCODE
 - install [VS code](https://code.visualstudio.com/Download) 
   - Installation of Arduino Extension
     - Cntrl+Shift+x  
@@ -19,8 +32,7 @@
   - create a src directory if it doesn't already exist (eg type `md src`)
   - change to that directory ('cd src' + enter)
   - clone the repository type 'git clone https://github.com/dougnutz/hoc.git'
-## Hardware
-- on top of the software tooling we need a ESP8266 compatible arduino (eg. ESP8266 NodeMCU CP2102 ESP-12E). Other arduino chips will likely work also.
+
 ## Checkpoint
   - In VS Code click open folder (or ctrl+k, ctrl+O)
     - in the file window pick the blink2 folder from the hoc directory just cloned (eg 'C:\src\hoc\Blink2')
