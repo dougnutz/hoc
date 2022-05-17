@@ -23,3 +23,7 @@
 - pick a gpio port from the pinout
 - assign the port to the variable
 - uncomment and impliment the lines to turn the second led off then on, with the opposite patter to the red led. It should flash red, green, red etc.
+- place the second led between the selected pin and the ground (-) on the breadboard
+- upload and verify it works :)
+- try changing the blink speed.
+-
