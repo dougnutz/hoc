@@ -1,9 +1,9 @@
 #include <Arduino.h>
 
 
-const int green = 14; 
-const int blue = 13;
-const int on = PWMRANGE;
+const int red = 14; 
+// const int green = pick a gpio port;
+const int on = 400;
 const int off = LOW;
 
 void printOut(String s){
@@ -18,13 +18,19 @@ void setup() {
 void loop() {
 
     printOut("begin loop");
-    printOut("green on");
-    analogWrite(green, on);
+    printOut("red on");
+    analogWrite(red, on);
 
-// delay 1000
+    // printOut("green on");
+    // turn off the green led
 
-    printOut("green off");
-analogWrite(green, off);
+ delay(1000);
+
+    printOut("red off");
+    analogWrite(red, off);
+
+    // printOut("green on");
+    // turn on the green led
 
  delay(500);
 
