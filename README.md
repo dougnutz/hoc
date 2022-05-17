@@ -14,7 +14,7 @@
 ## Checkpoint
   - With the blink example loaded
   - Make sure your board is connected to your computer with a USB cable
-  - If you need a driver [Here](https://github.com/nodemcu/nodemcu-devkit/blob/master/Drivers/CH341SER_WINDOWS.zip)
+  - If you need a driver [Here](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers)
 
 ## Using VSCODE
 - install [VS code](https://code.visualstudio.com/Download) 
