@@ -15,7 +15,7 @@
   - With the blink example loaded
   - Make sure your board is connected to your computer with a USB cable
   - If you need a driver [Here](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers)
-
+  - In the ide upload the blink program by clicking the arrow in the toolbar. The program should compile, upload, and the board led should blink
 ## Using VSCODE
 - install [VS code](https://code.visualstudio.com/Download) 
   - Installation of Arduino Extension
