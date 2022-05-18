@@ -50,23 +50,7 @@ void setup() {
 }
 
 
-void drawRectDemo() {
-  // Draw a pixel at given position
-  for (int i = 0; i < 10; i++) {
-    display.setPixel(i, i);
-    display.setPixel(10 - i, i);
-  }
-  display.drawRect(12, 12, 20, 20);
 
-  // Fill the rectangle
-  display.fillRect(14, 14, 17, 17);
-
-  // Draw a line horizontally
-  display.drawHorizontalLine(0, 40, 20);
-
-  // Draw a line horizontally
-  display.drawVerticalLine(40, 0, 20);
-}
 
 void drawCircleDemo() {
   for (int i = 1; i < 8; i++) {
@@ -79,29 +63,21 @@ void drawCircleDemo() {
   }
 }
 
+
+
 int counter = 1;
-void drawProgressBarDemo() {
-  counter ++;
-  int progress = (counter / 5) % 100;
-  // draw the progress bar
-  display.drawProgressBar(0, 32, 120, 10, progress);
-
-  // draw the percentage as String
-  display.setTextAlignment(TEXT_ALIGN_CENTER);
-  display.drawString(64, 15, String(progress) + "%");
-}
-
 void loop() {
-  Serial.println("begin loop");
+  Serial.print("begin loop ");
+  Serial.println(String(counter++) );
   // clear the display
   display.clear();
 
   display.setTextAlignment(TEXT_ALIGN_LEFT);
-  display.setFont(ArialMT_Plain_10); // this is the font size, try others ArialMT_Plain_16 or ArialMT_Plain_24
+  display.setFont(ArialMT_Plain_10); // this is the font size
   display.drawString(0, 26, "Hello world"); // try changing the coordinates, change 26 to 0
 
- // write the buffer to the display 
+  // write the buffer to the display 
   display.display();
 
-  delay(1000);
+  delay(100);
 }
