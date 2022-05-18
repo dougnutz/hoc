@@ -1,5 +1,3 @@
-#include <Arduino.h>
-
 /**
    The MIT License (MIT)
 
@@ -43,14 +41,12 @@
 
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println();
 
   // Initialising the UI will init the display too.
   display.init();
   display.flipScreenVertically();
-  display.setFont(ArialMT_Plain_10);
-
 }
 
 
@@ -95,18 +91,17 @@ void drawProgressBarDemo() {
   display.drawString(64, 15, String(progress) + "%");
 }
 
-
-//Demo demos[] = {, drawRectDemo, drawCircleDemo, drawProgressBarDemo};
-
-
 void loop() {
+  Serial.println("begin loop");
   // clear the display
   display.clear();
 
   display.setTextAlignment(TEXT_ALIGN_LEFT);
-  display.setFont(ArialMT_Plain_10);
- // display.setFont(ArialMT_Plain_16);
- // display.setFont(ArialMT_Plain_24);
-  display.drawString(0, 26, "Hello world");
+  display.setFont(ArialMT_Plain_10); // this is the font size, try others ArialMT_Plain_16 or ArialMT_Plain_24
+  display.drawString(0, 26, "Hello world"); // try changing the coordinates, change 26 to 0
 
+ // write the buffer to the display 
+  display.display();
+
+  delay(1000);
 }
