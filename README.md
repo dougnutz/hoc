@@ -1,5 +1,5 @@
 # hoc
-These projects are a collection of beginner level coding experiences I have shared successfully with students ranging from 8-12 years old. Smaller groups have worked well for me. And I always encourage experimentation. So leave time to for them to experiment. 
+hoc (or Hour of code) These projects are a collection of beginner level coding experiences I have shared successfully with students ranging from 8-12 years old. Smaller groups have worked well for me. And I always encourage experimentation. So leave time to for them to experiment. 
 ## Hardware
 - on top of the software tooling we need a ESP8266 compatible arduino (eg. ESP8266 NodeMCU CP2102 ESP-12E). Other arduino chips will likely work also.
 ## pre-requisite (windows setup)
