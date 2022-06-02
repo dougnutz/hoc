@@ -8,14 +8,6 @@
 - and connect the dispaly as shown
 
 ![image](https://user-images.githubusercontent.com/20483619/169120605-9e6c0a78-203f-4a8c-90f0-8fa44f1eb1e5.png)
-### Add libraries
- - click pio Home
- - click add libraries
- - search for 'esp8266 ssd1306'
- - Select "ESP8266 and ESP32 OLED driver for SSD1306 displays by ThingPulse"
- - click add to project
-  - select the Hellow world project
-  - click add
 
 ## Checkpoint Run the program
 - the screen should display "hello world"
@@ -35,6 +27,17 @@
  `display.drawCircle(32, 32, 10);` 
  - try changing the last number to 20
 
-### how about some animation?
+### How about some animation?
 - `display.drawProgressBar(0, 32, 120, 10, counter);`
  - what makes the progress bar move? how can we change that?
+
+### Troubleshooting
+This exercise was based on initial published libraries for the maker focus board. If the Hellow world project doesn't load try these steps instead
+#### Add libraries
+ - click pio Home
+ - click add libraries
+ - search for 'esp8266 ssd1306'
+ - Select "ESP8266 and ESP32 OLED driver for SSD1306 displays by ThingPulse"
+ - click add to project
+  - select the Hellow world project
+  - click add
