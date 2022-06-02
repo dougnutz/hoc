@@ -50,21 +50,6 @@ void setup() {
 }
 
 
-
-
-void drawCircleDemo() {
-  for (int i = 1; i < 8; i++) {
-    display.setColor(WHITE);
-    display.drawCircle(32, 32, i * 3);
-    if (i % 2 == 0) {
-      display.setColor(BLACK);
-    }
-    display.fillCircle(96, 32, 32 - i * 3);
-  }
-}
-
-
-
 int counter = 1;
 void loop() {
   Serial.print("begin loop ");
