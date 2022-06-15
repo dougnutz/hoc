@@ -14,8 +14,7 @@
    - What do they do?
 - Now back to the Main.cpp
    - lets include this file in our project by adding 
-
-   `#include <Webread.h>` to the top of our file
+   -  `#include <Webread.h>` to the top of our file
    - Now create an instance of WebRead along with our other variables
      -  `WebRead webread; `
 - In the setup() lets pass the network credentials to our helper class
@@ -27,7 +26,6 @@
 ## Customize it
 - REplace <code> with the api key. Then Change the url to replace hello with the students name with no spaces 
     `char gateUrl[]="http://hocfun.azurewebsites.net/api/echo?code=<code>&name=<your Name>`
-
 ## Checkpoint
 - Run the program and make sure it works.
     - The output window should display the loop and get the value. At this point the value is probably empty.
@@ -57,7 +55,6 @@ Run the code and see if the screen displays the empty value
 `http://hocfun.azurewebsites.net/api/echo?code=isfun&name=<student name>` remember to include the students name
 - now add `&value=HelloWorld` to the end of the urls
 
-`http://hocfun.azurewebsites.net/api/echo?code=isfun&name=<student name>&value=HelloWorld`
+`http://hocfun.azurewebsites.net/api/echo?code=<code>&name=<student name>&value=HelloWorld`
 
 - Observe the display when you change the value
-  
