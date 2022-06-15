@@ -24,7 +24,7 @@
     - `String payload = webRead.GetData(gateUrl);`
     - Then use `Serial.println(payload);` to display the value.
 ## Customize it
-- Replace <code> with the api key. Then Change the url to replace hello with the students name with no spaces 
+- Replace "code" with the api key. Then Change the url to replace hello with the students name with no spaces 
     `char gateUrl[]="http://hocfun.azurewebsites.net/api/echo?code=<code>&name=<your Name>`
 ## Checkpoint
 - Run the program and make sure it works.
@@ -52,9 +52,9 @@ Run the code and see if the screen displays the empty value
 ### Alter the file and let's see it work
 - For best effect disconnect the arduino from the computer and connect it to an external power source. 
 - Go to the browser and enter this into the address bar.
-`http://hocfun.azurewebsites.net/api/echo?code=isfun&name=<student name>` remember to include the students name
+`http://hocfun.azurewebsites.net/api/echo?code=code&name=<student name>` remember to include the students name
 - now add `&value=HelloWorld` to the end of the urls
 
-`http://hocfun.azurewebsites.net/api/echo?code=<code>&name=<student name>&value=HelloWorld`
+`http://hocfun.azurewebsites.net/api/echo?code=code&name=<student name>&value=HelloWorld`
 
 - Observe the display when you change the value
