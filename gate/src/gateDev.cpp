@@ -10,7 +10,7 @@ const int green =5 ;
 char ssid[] = "LHome";     //  your network SSID (name)
 char pass[] = "DougAndErikaWireless";  // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
-char gateUrl[]="http://dtipsstore.table.core.windows.net/gate(PartitionKey='gate',RowKey='state')?sv=";
+char gateUrl[]="http://hocfun.azurewebsites.net/api/echo?code=isfun&name=doug";
 
 unsigned int count = 1;
 void setup() {
@@ -33,10 +33,11 @@ bool getGateState(){
     HTTPClient http;
     
 
+
     printOut("[HTTP] begin...\n");
     if (http.begin(client, gateUrl)) {  // HTTP
 
-      http.addHeader  ( "Accept","application/json;odata=nometadata");
+     // http.addHeader  ( "Accept","application/json;odata=nometadata");
       Serial.print("[HTTP] GET...\n");
       // start connection and send HTTP header
       int httpCode = http.GET();
@@ -54,6 +55,7 @@ bool getGateState(){
         }
       } else {
         Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+        Serial.println(httpCode);
       }
 
       http.end();
@@ -73,13 +75,13 @@ void loop() {
 bool boby = getGateState();
   //if it is is open turn on the green  hint define the green
 if(boby){
-   analogWrite(green,500);
-     analogWrite(red,0);
+//   analogWrite(green,500);
+ //    analogWrite(red,0);
 }
  //else turn on red
 else{ 
-  analogWrite(red,500);
-  analogWrite(green,0);
+///  analogWrite(red,500);
+ // analogWrite(green,0);
 }
   //wait 5 sec and check again 
 delay(5000);

@@ -49,6 +49,11 @@ void setup() {
   display.flipScreenVertically();
 }
 
+void moveDot(int x, int y, int dx, int dy) {
+  display.clearPixel(x,y);
+  display.setPixel(dx, dy);
+  display.display();
+}
 
 int counter = 1;
 void loop() {
@@ -59,10 +64,13 @@ void loop() {
 
   display.setTextAlignment(TEXT_ALIGN_LEFT);
   display.setFont(ArialMT_Plain_10); // this is the font size
-  display.drawString(0, 26, "Hello world"); // try changing the coordinates, change 26 to 0
+  display.drawString(0, 26, "Hello"); // try changing the coordinates, change 26 to 0
 
   // write the buffer to the display 
   display.display();
+
+  // draw a dot that move around the display
+
 
   delay(100);
 }
