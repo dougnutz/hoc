@@ -1,5 +1,5 @@
 # Read from the internet and display the content
-## setup 
+## Setup 
 - the api that will be called must be setup a head of time. 
 - You will need to add the wifi SSID and password. Make sure you know these
 - This build on knowledge from the HellowWorld project
@@ -8,7 +8,7 @@
 - Open the src/main cpp file
 - At the top of the file add the ssid and network password
 - For this lession the actual connection and crude error handling has been written in a helper class that we will use
-### steps
+### Steps
 - We want to take a look at the WebRead.cpp file and talk about what it is doing. 
    - What methods are there? 
    - What do they do?
@@ -24,7 +24,7 @@
     - `String payload = webRead.GetData(gateUrl);`
     - Then use `Serial.println(payload);` to display the value.
 ## Customize it
-- REplace <code> with the api key. Then Change the url to replace hello with the students name with no spaces 
+- Replace <code> with the api key. Then Change the url to replace hello with the students name with no spaces 
     `char gateUrl[]="http://hocfun.azurewebsites.net/api/echo?code=<code>&name=<your Name>`
 ## Checkpoint
 - Run the program and make sure it works.
@@ -49,7 +49,7 @@
 ## Checkpoint
 Run the code and see if the screen displays the empty value
 
-### alter the file and let's see it work
+### Alter the file and let's see it work
 - For best effect disconnect the arduino from the computer and connect it to an external power source. 
 - Go to the browser and enter this into the address bar.
 `http://hocfun.azurewebsites.net/api/echo?code=isfun&name=<student name>` remember to include the students name
