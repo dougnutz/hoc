@@ -123,7 +123,7 @@
         <body>
     </html>
 
-    ## Hint 
-    pages need to be processed server side before they are ready to view.
-    Keep an eye on your build using the actions tab under settings.
+## Hint 
+pages need to be processed server side before they are ready to view.
+Keep an eye on your build using the actions tab under settings.
 
