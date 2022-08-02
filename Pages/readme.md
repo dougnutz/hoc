@@ -46,9 +46,9 @@
 * `code .`
 * open the read me and add the following under the `# hello world`
 * ```
-# H1
-## H2
-### H3
+    # H1
+    ## H2
+    ### H3
     ordered list
     ***
     1. First item
