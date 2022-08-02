@@ -1,0 +1,42 @@
+remember these headers
+
+#include <WebRead.h>
+#include "SSD1306Wire.h"  
+
+
+here is a url to test with 
+
+http://hocfun.azurewebsites.net/api/echo?code=<code>&name=<studentName>&value=HelloWorld";
+
+reference class
+WebRead webRead;
+
+setup changes
+void setup() {
+  add this line
+  webRead.SetConnectionInfo(ssid, pass);
+}
+
+loop changes, add these lines
+void loop() {
+   String payload = webRead.GetData(gateUrl);
+   Serial.println(payload);
+}
+
+
+display driver class
+SSD1306Wire display(0x3c, D3, D5);  // ADDRESS, SDA, SCL  
+
+void loop() {
+   display.clear();
+   display.drawString(0,0,payload);
+   display.display();
+}
+
+Test page
+https://dougnutz.github.io/readtheweb.html
+ 
+
+
+
+
