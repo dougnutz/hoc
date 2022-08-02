@@ -97,3 +97,33 @@
 
     lastly make a **bold** statement
 
+* What do you expect to happen ?
+* now lets remove all of the above and add a link to a new page
+* replace the contents of  `reademe.md` with 
+``` 
+    ## other pages
+    - [my sub page](https://github.com/(username)/(username).github.io/sub)
+
+* create a new page called sub.html
+* add the following
+```
+    <html>
+        <body>
+            <h1>h1</h1>
+            <h2>h2<h2/>
+            <ul>
+                <li>one</li>
+                <li>two</li>
+            </ul>
+            <hr />
+            <ol>
+                <li>one</li>
+                <li>two</li>
+            </ol>
+        <body>
+    </html>
+
+    ## Hint 
+    pages need to be processed server side before they are ready to view.
+    Keep an eye on your build using the actions tab under settings.
+
