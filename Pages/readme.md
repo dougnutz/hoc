@@ -127,6 +127,34 @@
 
 <font color="red">This text is red!</font>
 
+## Ideas for tasks
+* add a custom image
+* add a table
+* add different colored text
+* add a line break
+* add a div with an image in the background
+* add a background image
+
+* explore custom classes (css) inline in the head
+```
+<head>
+<style>
+body {
+  background-color: linen;
+}
+
+h1 {
+  color: maroon;
+  margin-left: 40px;
+}
+.red{
+  color: red;
+}
+
+</style>
+</head>
+```
+
 ## Hint 
 pages need to be processed server side before they are ready to view.
 Keep an eye on your build using the actions tab under settings.
