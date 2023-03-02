@@ -89,7 +89,7 @@
 - add the following line to the loop function
   - `int linePosition = 0;`
 - add the following lines to the loop function
-- increase the speed of the loop by changing the delay to 100
+- increase the speed of the loop by changing the delay to 200
     - `delay(200);`
 - now if the line is not at the edge of the screen then increment the line position
   - ```
@@ -141,29 +141,52 @@ How can we check to see if we are at the edge of the screen?
 
 ### add a button to the breadboard
 - add a button to the breadboard
-- connect the button to the pin 16
+  - connect one side of the button to ground
+  - connect the other side of the button to pin 16
+#### add a debounce library
+ click pio Home
+ - click add libraries
+ - search for 'Bounce2'
+ - clickBounce2 by Thomas O Fredericks
+  - click add to project
+      - select the BasicMovement project
+      - click add
+
+
 - add the following line to the top of the file
   - `#include <Bounce2.h>`  
 - add the following lines to the top of the file
     - ```
-        Bounce debouncer = Bounce();
-        int buttonPin = 16;
+        Bounce2::Button button = Bounce2::Button();
+        int buttonPin = D1;
         ```
 - add the following lines to the setup function
 
     - ```
-        pinMode(buttonPin, INPUT_PULLUP);
-        debouncer.attach(buttonPin);
-        debouncer.interval(5);
+        button.attach( buttonPin, INPUT_PULLUP); 
+        button.interval(5); 
+        button.setPressedState(LOW); 
         ```
 - add the following lines to the loop function
     - ```
-        debouncer.update();
-        if (debouncer.fell()){
+      button.update();
+        if (button.isPressed()){
           Serial.println("button pressed");
         }
         ```
+- remove 
+ ```
+    else{
+              direction = direction * -1;
+      }
+  ```
 - run the program
+- depending on the loop speed the button pressed may not get detected. We are only checking the button state once every loop. How can we check the button state more often?
+
+#### Checkpoint 5
+
+- see the Checkpoint5.md file for a working solution
+
 
 ## Troubleshooting
 This exercise was based on initial published libraries for the maker focus board. If the Hellow world project doesn't load try these steps instead

@@ -1,3 +1,4 @@
+```
 #include <Arduino.h>
 #include "SSD1306Wire.h"    
 #include <Bounce2.h>   
@@ -52,3 +53,4 @@ void loop() {
   Serial.println("linePosition: " + String(linePosition));
   delay(200);
 }
+```
