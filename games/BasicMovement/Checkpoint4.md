@@ -1,4 +1,4 @@
-#include <Arduino.h>
+```#include <Arduino.h>
 #include "SSD1306Wire.h"       
 
 // Initialize the OLED display using Arduino Wire:
@@ -19,7 +19,7 @@ void setup() {
   display.setTextAlignment(TEXT_ALIGN_LEFT);  
 }
 
-void drawLine(  int x, int length){
+void drawLine(int x, int length){
   Serial.println("draw line...");
   display.drawHorizontalLine(x, 63, length);
   display.display();
