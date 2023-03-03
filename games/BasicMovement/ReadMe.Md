@@ -19,27 +19,39 @@
     - click add
 
 #### Add the code
-    - open the src/main.cpp file
-        - add `#include "SSD1306Wire.h" ` to the top of the file
-        - Initialize the display
-        - Add the comment '// Initialize the OLED display using Arduino Wire:'
-        - add `SSD1306Wire display(0x3c, 5, 4);` to the top of the file
-    - in the setup function add the following lines
-        - '// initialize com port'
-        - `Serial.begin(9600);`
-        - `Serial.println("Begin loop...");`
-        - `// initialize display`
-        - `display.init();`
-        - `display.flipScreenVertically();`
-        - `display.setFont(ArialMT_Plain_10);`
-        - `display.setTextAlignment(TEXT_ALIGN_LEFT);`
-        
+- open the src/main.cpp file
+    - add  
+    ```
+    #include "SSD1306Wire.h" 
+    ```
+     to the top of the file
+    - Initialize the display
+    - Add the comment '// Initialize the OLED display using Arduino Wire:'
+    - add 
+    ``` 
+    SSD1306Wire display(0x3c, D3, D5);
+    ```
+     to the top of the file
+- in the setup function add the following lines
+    ```
+      // initialize com port
+      Serial.begin(9600);
+      Serial.println("Begin loop...");
+      // initialize display
+      display.init();
+      display.flipScreenVertically();
+      display.setFont(ArialMT_Plain_10);
+      display.setTextAlignment(TEXT_ALIGN_LEFT);
+    ```
+    
 
-    - in the loop function add the following lines
-        - `display.clear();`
-        - `display.drawString(0, 0, "Hello World");`
-        - `display.display();`
-        - `delay(2000);`
+- in the loop function add the following lines
+    ```
+    display.clear();
+    display.drawString(0, 0, "Hello World");
+    display.display();
+    delay(2000);
+    ```
 
 #### Checkpoint 1
 - run the program
@@ -58,14 +70,19 @@
 
 - now extract the line to a function
   - add the following function above the loop function
-    - `void drawLine(int x,  int length)`
+    
+     `void drawLine(int x,  int length)`
   - add the following lines to the function
-    - `display.drawHorizontalLine(x, 63, length);`
-    - `display.display();`
+    ```
+    display.drawHorizontalLine(x, 63, length);
+    display.display();
+    ```
 
   - call the function from the loop function
-    - 'Serial.println("draw line...");'
-    - `drawLine(0, 20);`
+    ```
+    Serial.println("draw line...");    
+    drawLine(0, 20);
+    ```
 
 - run the program
 
@@ -74,10 +91,12 @@
 - How can we move the line to the right side of the screen using math?
 - start by adding a variable to track the line width 
 - add the line
-  - `int lineWidth = 20;`
+
+   `int lineWidth = 20;`
 - hint the display resolution is 128x64
 - hint the line starts at x which is the left side of the line
-   - `drawLine(128-lineWidth,  lineWidth);`
+   
+    `drawLine(128-lineWidth,  lineWidth);`
 
 - run the program
 
@@ -87,26 +106,30 @@
 
 ### Create a loop that moves the line from the left to the right side of the screen
 - add the following line to the loop function
-  - `int linePosition = 0;`
+  ```
+  int linePosition = 0;
 - add the following lines to the loop function
 - increase the speed of the loop by changing the delay to 200
-    - `delay(200);`
+  ```
+   delay(200);
 - now if the line is not at the edge of the screen then increment the line position
-  - ```
-        if(linePosition < 128){}
-          drawLine(--linePosition, lineWidth);
-          }
-    ```
+  ```
+  if(linePosition < 128){}
+    drawLine(--linePosition, lineWidth);
+    }
+  ```
 - add the following lines to the bottom loop function above the delay
-  - `Serial.println("linePosition: " + String(linePosition));`
+  ```
+  Serial.println("linePosition: " + String(linePosition));
  
 - run the program
 - the line should move from the left to the right side of the screen
 - what else happened? Why?
 
 How can we check to see if we are at the edge of the screen?
-- change the if statement to check if the line position is less than the line width
-  - `if (linePosition < 128-lineWidth){`
+- change the if statement to check if the line position is less than the display size minus line width
+  ```
+  if (linePosition < 128-lineWidth){
 
 - run the program
 - did it work as expected
@@ -116,10 +139,12 @@ How can we check to see if we are at the edge of the screen?
 
 ### low lets make the line move back and forth
 - add the following line to the file with the other loop variables       
-    - `int direction = 1;`      
+    ```
+    int direction = 1;
+      
 - modify the code to check the direction and move the line in the correct direction
 - add the following lines to the loop function
-    - ```
+     ```
         if (linePosition < 128-lineWidth && direction == 1){
           drawLine(++linePosition, lineWidth);
           Serial.println("linePosition: " + String(linePosition));
@@ -154,32 +179,33 @@ How can we check to see if we are at the edge of the screen?
 
 
 - add the following line to the top of the file
-  - `#include <Bounce2.h>`  
+  ```
+  #include <Bounce2.h>
 - add the following lines to the top of the file
-    - ```
-        Bounce2::Button button = Bounce2::Button();
-        int buttonPin = D1;
-        ```
+  ```
+    Bounce2::Button button = Bounce2::Button();
+    int buttonPin = D1;
+        
 - add the following lines to the setup function
 
-    - ```
-        button.attach( buttonPin, INPUT_PULLUP); 
-        button.interval(5); 
-        button.setPressedState(LOW); 
-        ```
-- add the following lines to the loop function
-    - ```
-      button.update();
-        if (button.isPressed()){
-          Serial.println("button pressed");
-        }
-        ```
-- remove 
- ```
-    else{
-              direction = direction * -1;
-      }
   ```
+    button.attach( buttonPin, INPUT_PULLUP); 
+    button.interval(5); 
+    button.setPressedState(LOW); 
+      
+- add the following lines to the loop function
+  ```
+  button.update();
+    if (button.isPressed()){
+      Serial.println("button pressed");
+    }
+       
+- remove 
+  ```
+      else{
+                direction = direction * -1;
+        }
+    ```
 - run the program
 - depending on the loop speed the button pressed may not get detected. We are only checking the button state once every loop. How can we check the button state more often?
 
