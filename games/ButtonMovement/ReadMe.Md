@@ -20,14 +20,16 @@
     - select the BasicMovement project
     - click add
 
-
+### Checkpoint 
+Run the program and make sure you have a line that moves back and forth across the screen.
 
     
 
 ### add a button to the breadboard
 - add a button to the breadboard
   - connect one side of the button to ground
-  - connect the other side of the button to pin 16
+  - connect the other side of the button to pin 16 (D1)
+
 #### Add the code
  click pio Home
  - click add libraries
@@ -71,9 +73,66 @@
 - run the program
 - depending on the loop speed the button pressed may not get detected. We are only checking the button state once every loop. How can we check the button state more often?
 
-#### Checkpoint 5
+Does the program work as expected? 
+What happens when you press the button? What happens when you hold the button down?
 
-- see the Checkpoint5.md file for a working solution
+#### Checkpoint 2
+
+- see the Checkpoint2.md file for a working solution
+
+## lets change the behavior of the button to move the line to the right only
+ - remove everything from the loop method
+ Add the following code to the loop method
+ ```
+   display.clear();
+   button.update();
+
+   delay(100);
+ ```
+
+- add the following code between the button.update() and the printLine()
+```
+    // check to see if the button is pressed, if so move the line to the right 10 pixels
+    if (button.isPressed()){
+      Serial.println("button pressed");
+      linePosition = linePosition + 10;
+
+    // if the line is off the screen move it back to the left side
+    if (linePosition > 128){
+      linePosition = 0;
+    }
+
+    // draw the line
+    drawline(linePosition, lineWidth);
+```
+
+### Note to reduce the spam in the console outputmove `Serial.println("linePosition: " + String(linePosition)); ` to the end of the drawLine method
+
+#### Checkpoint 3 
+- see the Checkpoint3.md file for a working solution
+
+
+### lets add a second button
+- add a second button to the breadboard
+  - connect one side of the button to ground
+  - connect the other side of the button to pin 4 (D5)
+
+#### Add the code
+- open the src/main.cpp file
+ - at the top of the file
+   - add a new button variable (example use "button2")
+   - add a new pin variable
+ - In the setup method add line to setup the new button in the same way as we did for the first button
+ - In the loop method
+    - add a new button2 update
+    - add a new if statement to check the new button2 state
+    - add a new line to move the line to the left 10 pixels
+    - add an else check to see if the line is off the screen and move it back to the right side
+
+#### Note: further reduce the console spam by moving the linePosition print to inside the button isPressed check
+
+### Checkpoint 4
+- see the Checkpoint4.md file for a working solution
 
 
 ## Troubleshooting

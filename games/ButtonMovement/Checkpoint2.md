@@ -51,6 +51,6 @@ void loop() {
   
 
   Serial.println("linePosition: " + String(linePosition));
-  delay(200);
+  delay(100);
 }
 ```

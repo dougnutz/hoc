@@ -1,6 +1,5 @@
 #include <Arduino.h>
-#include "SSD1306Wire.h"   
-    
+#include "SSD1306Wire.h"       
 
 // Initialize the OLED display using Arduino Wire:
  SSD1306Wire display(0x3c, D3, D5);  // ADDRESS, SDA, SCL  
@@ -15,7 +14,7 @@ void setup() {
 
   // initialize display
   display.init();
-//  display.flipScreenVertically(); uncomment this line if you want to flip the display
+  display.flipScreenVertically();
   display.setFont(ArialMT_Plain_10);
   display.setTextAlignment(TEXT_ALIGN_LEFT);  
 }
