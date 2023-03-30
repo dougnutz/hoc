@@ -198,6 +198,7 @@ How can we check to see if we are at the edge of the screen?
   button.update();
     if (button.isPressed()){
       Serial.println("button pressed");
+      direction = direction * -1;
     }
        
 - remove 
