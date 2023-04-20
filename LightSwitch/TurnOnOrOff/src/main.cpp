@@ -1,17 +1,39 @@
 #include <Arduino.h>
+#include <WebRead.h>
+
+
+char ssid[] = "LHome";     //  your network SSID (name)
+char pass[] = "DougAndErikaWireless";  // your network password
+char gateUrl[]="http://hocfun.azurewebsites.net/api/echo?code=isfun&name=hello";
+int ledPin = 13; // D7 on NodeMCU
+WebRead webRead;
 
 
 void setup() {
    // setup serial communication
-
-    // set pin mode for the outpu pin
+    Serial.begin(9600);
+    Serial.println("Setup begin");
+    // set pin mode for the led pin
+    pinMode(ledPin, OUTPUT); 
+    webRead.SetConnectionInfo(ssid, pass);
 }
 
 void loop() {
-    // make a web request and get pin state
+     Serial.print("Begin Loop ... ");
+     
+     // make a web request and get pin state
+     String response = webRead.GetData(gateUrl);
+     Serial.println(response);
 
-    // if the response is "on" then turn the led on if "off" then turn it off
+     if(response == "on")
+     {
+        digitalWrite(ledPin, HIGH);
+     }
+     else if(response == "off")
+     {
+        digitalWrite(ledPin, LOW);
+     }
 
     //wait 2 sec and check again 
-
+    delay(2000);
 }

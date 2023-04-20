@@ -2,7 +2,7 @@
 This is the embeded client that will control a relay board. It will send a request to the server and get the response. If the response is "on" then the relay will turn on, if the response is "off" it will turn off.
 In any other case we don't change state. We should however emit the reponse to the serial port for debugging.
 
-## prerequisites
+## Prerequisites
 You should have completed the following tutorials:
  - [Blink]()
  - [WebRead]()

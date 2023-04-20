@@ -1,3 +1,4 @@
+``` c++
 #include <Arduino.h>
 #include "SSD1306Wire.h"   
 #include <Bounce2.h>
@@ -6,12 +7,19 @@
 // Initialize the OLED display using Arduino Wire:
  SSD1306Wire display(0x3c, D3, D5);  // ADDRESS, SDA, SCL  
  int lineWidth = 20;
- int linePosition = 0;
+ int linePosition = 64;
  int direction = 1;
  Bounce2::Button button = Bounce2::Button();
  Bounce2::Button button2 = Bounce2::Button();
   int buttonPin = D1;  //D1 is pin 5, or the pin of your choice
   int buttonPin2 = D2;  //D2 is pin 4, or the pin of your choice
+  int ballX = 0;
+  int frameY = 10;
+  int ballY = frameY + 1;
+  int ballXDirection = 1;
+  int ballYDirection = 1;
+  int ballSpeed = 1;
+  int score = 0;
 
 void setup() {
   // initialize com port
@@ -32,17 +40,66 @@ void setup() {
   button2.setPressedState(LOW);
 }
 
-void drawLine(int x, int length){
+void drawPaddle(int x, int length){
   
   display.drawHorizontalLine(x, 63, length);
   display.display();
 }
 
+void drawBall(int x, int y){
+  display.setPixel(x, y);
+  display.setPixel(x+1, y);
+  display.setPixel(x, y+1);
+  display.setPixel(x+1, y+1);
+}
+
+void moveBall(){
+  ballX = ballX + ballXDirection * ballSpeed;
+  ballY = ballY + ballYDirection * ballSpeed;
+
+
+
+  if(ballX > 126){
+    ballXDirection = -1;
+  }
+  if(ballX < 2){
+    ballXDirection = 1;
+  }
+  if(ballY > 63){
+    //game over
+    Serial.println("Game Over");
+    int over = 0;
+    while(over++ <1000 ){
+      display.clear();
+      display.drawString(0, 0, "Game Over");
+      display.display();
+    }
+    // reset the game
+    ballX = 2;
+    ballY = 2;
+   }
+  if(ballY < frameY + 2){ 
+    ballYDirection = 1;
+  }
+  if(ballY > 62 && ballX > linePosition && ballX < linePosition + lineWidth){
+    ballYDirection = -1;
+    score++;
+  }
+  
+  drawBall(ballX, ballY);
+}
+
 void loop() {
   display.clear();
 
-  // < start here >
+  // draw a frame, we will use a rectangle and start 10 pixels from the top  
+  display.drawRect(0,frameY,128,64);
 
+  // draw the ball
+  moveBall();
+
+  display.drawString(0, 0, "Score: "+ String(score));
+ 
   // update the button state 
   button.update();
   button2.update();
@@ -67,9 +124,10 @@ void loop() {
     }
 
     // draw the line
-    drawLine(linePosition, lineWidth);
+    drawPaddle(linePosition, lineWidth);
 
    
    delay(100);
  
 }
+```

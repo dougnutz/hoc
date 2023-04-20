@@ -1,139 +1,245 @@
 ## Pre-requisites 
-- this is a continuation from the basic movement project but can be completed by itself
+- this is a continuation from the button movement project but can be completed by itself
 - nodemcu 2866
-- maker focus (or similar) ssd1306 display
-### Wire up the display 
-- mount the chip and display to a bread board 
-![image](https://user-images.githubusercontent.com/20483619/169121210-d8eda466-2b1d-4b4a-9aca-6b1b6363d88f.png)
 
-- and connect the dispaly as shown
-
-![image](https://user-images.githubusercontent.com/20483619/169120605-9e6c0a78-203f-4a8c-90f0-8fa44f1eb1e5.png)
+### Checkpoint 1
+ Before we start validate the code, upload it to the board and see the results. You should see the line and it should move with button presses.
+ Note the button pins may be different on your board, if so update the code to match your board.
 
 
-#### Add libraries
- - click pio Home
- - click add libraries
- - search for 'esp8266 ssd1306'
- - Select "ESP8266 and ESP32 OLED driver for SSD1306 displays by ThingPulse"
- - click add to project
-    - select the BasicMovement project
-    - click add
-
-### Checkpoint 
-Run the program and make sure you have a line that moves back and forth across the screen.
-
-    
-
-### add a button to the breadboard
-- add a button to the breadboard
-  - connect one side of the button to ground
-  - connect the other side of the button to pin 16 (D1)
-
-#### Add the code
- click pio Home
- - click add libraries
- - search for 'Bounce2'
- - clickBounce2 by Thomas O Fredericks
-  - click add to project
-      - select the BasicMovement project
-      - click add
-
-- open the src/main.cpp file
-
-- add the following line to the top of the file
-  ```
-  #include <Bounce2.h>
-- add the following lines to the top of the file above the setup function
-  ```
-    Bounce2::Button button = Bounce2::Button();
-    int buttonPin = D1;  //D1 is pin 16, or the pin of your choice
-        
-- add the following lines to the setup function
-
-  ```
-    button.attach( buttonPin, INPUT_PULLUP); 
-    button.interval(5); 
-    button.setPressedState(LOW); 
-      
-- add the following lines to the loop function, below the begin loop and display.clear()
-  ```
-  button.update();
-    if (button.isPressed()){
-      Serial.println("button pressed");
-      direction = direction * -1;
-    }
-       
-- remove 
-  ```
-      else{
-                direction = direction * -1;
-        }
-    ```
-- run the program
-- depending on the loop speed the button pressed may not get detected. We are only checking the button state once every loop. How can we check the button state more often?
-
-Does the program work as expected? 
-What happens when you press the button? What happens when you hold the button down?
-
-#### Checkpoint 2
-
-- see the Checkpoint2.md file for a working solution
-
-## lets change the behavior of the button to move the line to the right only
- - remove everything from the loop method
- Add the following code to the loop method
- ```
-   display.clear();
-   button.update();
-
-   delay(100);
- ```
-
-- add the following code between the button.update() and the printLine()
-```
-    // check to see if the button is pressed, if so move the line to the right 10 pixels
-    if (button.isPressed()){
-      Serial.println("button pressed");
-      linePosition = linePosition + 10;
-
-    // if the line is off the screen move it back to the left side
-    if (linePosition > 128){
-      linePosition = 0;
-    }
-
-    // draw the line
-    drawline(linePosition, lineWidth);
+## Step 1 the frame
+### Modify the loop() function
+- add a rectangle on the perimeter of the screen
+- use the following code
+```c++
+  display.drawRect(0, 0, 128, 64);
 ```
 
-### Note to reduce the spam in the console outputmove `Serial.println("linePosition: " + String(linePosition)); ` to the end of the drawLine method
+#### checkpoint 2
+- upload the code to the board and see the results
 
-#### Checkpoint 3 
-- see the Checkpoint3.md file for a working solution
+## Step 2 the ball
+### Modify the loop() function
+- add a pixel to the screen
+- use the following code
+```c++
+  display.setPixel(64, 32);
+```
+- run the code and see the results
+- the ball seems small, lets make it bigger
+- use the following code
+```c++
+  display.setPixel(64, 32);
+  display.setPixel(65, 32);
+  display.setPixel(64, 33);
+  display.setPixel(65, 33);
+```
+- run the code and see the results
+
+## Make the ball move
+First lets refactor the draw ball code into a function
+- Above the loop() add a new method called drawBall() which takes two parameters x and y
+- use the following code
+```c++
+void drawBall(int x, int y){
+  display.setPixel(x, y);
+  display.setPixel(x+1, y);
+  display.setPixel(x, y+1);
+  display.setPixel(x+1, y+1);
+}
+```
+- now call the drawBall() method from the loop() method
+- replace the Display.setPixel() code block with the following code
+```c++
+  drawBall(64, 32);
+```
+- run the code and see the results validate the ball is still there
+- now lets make the ball move
+- add a new variable called ballX to the top of the file and set it to 64, this will be the x position of the ball.
+- use the following code
+```c++
+int ballX = 0;
+```
+- now add a new variable called ballY to the top of the file and set it to 32, this will be the y position of the ball.
+- use the following code
+```c++  
+int ballY = 0;
+```
+- change your drawBall() function call to use the ballX and ballY variables
+
+```c++
+  drawBall(ballX, ballY);
+```
+
+- add a new variable called ballXDirection to the top of the file and set it to 1, this will be the direction of the ball in the x direction.
+- use the following code
+```c++
+int ballXDirection = 1;
+```
+- add a new variable called ballYDirection to the top of the file and set it to 1, this will be the direction of the ball in the y direction.
+- use the following code
+```c++
+int ballYDirection = 1;
+```
+- add a new variable called ballSpeed to the top of the file and set it to 1, this will be the speed of the ball.
+- use the following code
+```c++
+int ballSpeed = 1;
+```
+- lets make the ball move
+- add the following code to the loop() method
+```c++
+  ballX = ballX + ballXDirection * ballSpeed;
+  ballY = ballY + ballYDirection * ballSpeed;
+```
+- RUN the code and see the results
+
+- NOW lets make the ball bounce off the walls
+- add the following code to the loop() method
+```c++
+  if(ballX > 126){
+    ballXDirection = -1;
+  }
+  if(ballX < 2){
+    ballXDirection = 1;
+  }
+  if(ballY > 62){
+    ballYDirection = -1;
+  }
+  if(ballY < 2){
+    ballYDirection = 1;
+  }
+```
+- RUN the code and see the results
+
+- lets refactor the ball movement code into a function
+- Above the loop() add a new method called moveBall() which takes no parameters
+- use the following code
+```c++
+void moveBall(){
+
+}
+```
+- move the following code from the loop() method into the moveBall() method
+```c++
+    ballX = ballX + ballXDirection * ballSpeed;
+  ballY = ballY + ballYDirection * ballSpeed;
+
+  if(ballX > 126){
+    ballXDirection = -1;
+  }
+  if(ballX < 2){
+    ballXDirection = 1;
+  }
+  if(ballY > 62){
+    ballYDirection = -1;
+  }
+  if(ballY < 2){
+    ballYDirection = 1;
+  }
+  drawBall(ballX, ballY);
+```
+- now call the moveBall() method from the loop() method
+- use the following code
+```c++
+  moveBall();
+```
+
+- run the code and verify the ball still moves properly
+
+#### checkpoint 3
+- The ball should move around the screen and bounce off the walls. If there are issues check the code against the solution checkpoint3.md
+
+## Step 3 move the frame down
+- now move the rectangle down 10 pixels
+- we will also need a new variable to keep track of the frame position. Add a new variable called frameY to the top of the file and set it to 10, this will be the y position of the frame.
+- add the following code
+```c++
+int frameY = 10;
+```
+- also change the ballY variable to the frameY variable +1;
+- use the following code
+```c++
+int ballY = frameY + 1;
+```
+- now change the drawRect() method call to use the frameY variable
+- use the following code
+```c++
+  display.drawRect(frameX, 0, 128, 64);
+```
+- we also need to change the limit detection of the ball
+- change the following code
+```c++
+  if(ballY < 2){ 
+    ballYDirection = 1;
+  }
+```
+- to the following code
+```c++
+  if(ballY < frameY + 2){ 
+    ballYDirection = 1;
+  }
+```
+- run the code and verify the results
+#### checkpoint 4
+- The ball should move around the screen and bounce off the walls in the new position. If there are issues check the code against the solution checkpoint4.md
+
+## Step 4 lets detect the collision
+- if the ball encounters the paddle we want to change the direction of the ball
+- we know the position of the paddle based on the variable linePosition. We also know the position of the ball based on the variables ballX and ballY
+- we can detect the collision by checking if the ball is at the bottom of the screen and within the paddle
+- add the following code to the moveBall() method above the drawBall() method call
+```c++
+  if(ballY > 62 && ballX > linePosition && ballX < linePosition + lineWidth){ 
+    ballYDirection = -1;
+  }
+```
+- if the ball is at the bottom of the screen and not within the paddle we want to end the game
+  - replace the following code
+  ```c++
+  if(ballY > 62){
+    ballYDirection = -1;
+  }
+  ```
+  - with the  code
+```c++
+   if(ballY > 63){
+    //game over
+    Serial.println("Game Over");
+    int over = 0;
+    while(over++ <1000 ){
+      display.clear();
+      display.drawString(0, 0, "Game Over");
+      display.display();
+      delay(100);
+    }
+    // reset the game
+    ballX = 2;
+    ballY = 2;
+   }
 
 
-### lets add a second button
-- add a second button to the breadboard
-  - connect one side of the button to ground
-  - connect the other side of the button to pin 4 (D5)
+## Step 3 the score
+- Ok we want to keep
+- add a new variable called score to the top of the file and set it to 0, this will be the score.
+- use the following code
+```c++
+int score = 0;
+```
+- now add the word score to the top of the screen
+- use the following code inside the loop() method
+```c++
+  display.drawString(0, 0, "Score: "+ String(score));
+```
 
-#### Add the code
-- open the src/main.cpp file
- - at the top of the file
-   - add a new button variable (example use "button2")
-   - add a new pin variable
- - In the setup method add line to setup the new button in the same way as we did for the first button
- - In the loop method
-    - add a new button2 update
-    - add a new if statement to check the new button2 state
-    - add a new line to move the line to the left 10 pixels
-    - add an else check to see if the line is off the screen and move it back to the right side
 
-#### Note: further reduce the console spam by moving the linePosition print to inside the button isPressed check
+- everytime the ball touches the paddle add 1 to the score, iside the collision detection code add the following code.
+```c++
+    score++;
+```
 
-### Checkpoint 4
-- see the Checkpoint4.md file for a working solution
-
+## WOW that is a lot of code
+Verify the code works and if it doesn't verify it against the checkpoint5.md file
 
 ## Troubleshooting
 This exercise was based on initial published libraries for the maker focus board. If the Hellow world project doesn't load try these steps instead
