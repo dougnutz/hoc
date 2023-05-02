@@ -136,10 +136,10 @@ void loop() {
     }
 
     // if the line is off the screen move it back to the left side
-    if (linePosition > 128){
+    if (linePosition > 128 + lineWidth/2){
       linePosition = 0;
     }
-    else if (linePosition < 0){
+    else if (linePosition < 0 - lineWidth/2){
       linePosition = 128;
     }
 

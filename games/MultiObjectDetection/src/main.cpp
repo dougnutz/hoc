@@ -39,7 +39,6 @@ void resetGame(){
   ballY = frameY+10;
   ballXDirection = 1;
   ballYDirection = 1;
-  score = 0;
   level = 1;
 }
 
@@ -152,7 +151,8 @@ void moveBall(){
     }
     // reset the game
     resetGame();
-
+    score = 0;
+    gameSpeed = 0;
    }
   if(ballY < frameY + 2){ 
     ballYDirection = 1;
@@ -201,10 +201,10 @@ void loop() {
     }
 
     // if the line is off the screen move it back to the left side
-    if (linePosition > 128){
+    if (linePosition > 128 + lineWidth/2){
       linePosition = 0;
     }
-    else if (linePosition < 0){
+    else if (linePosition < 0 - lineWidth/2){
       linePosition = 128;
     }
 

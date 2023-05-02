@@ -255,6 +255,8 @@ bool checkBarCollision(){
   return collision;
 }
 ```
+ - deploy the code and validate the score and level are displayed and incremented correctly.
+ - To troubleshoot compare your solution with checkpoint5.MD
 
 # Troubleshooting
 This exercise was based on initial published libraries for the maker focus board. If the Hellow world project doesn't load try these steps instead
