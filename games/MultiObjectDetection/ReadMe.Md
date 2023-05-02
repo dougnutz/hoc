@@ -7,7 +7,9 @@
  Note the button pins may be different on your board, if so update the code to match your board.
 
 
-# Breakout
+# Breakout style game
+Note that object collision is tricky. This approach is brute force and not the most efficient. It is however easy to understand and implement. It also introduces the concept of a struct and arrays (collections); It further expands on the idea of loops and conditional checks.
+
 ## Step 1 Draw a collection of bars at the top of the screen
 - create a new function called drawBars. The function should populate a collection of bar objects
 The visibility or existence of the bar will be determined by a boolean value. Collision of the ball object will toggle the visibility to false.
