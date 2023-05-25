@@ -35,24 +35,11 @@ void resetGame(){
   for(int i = 0; i < 10; i++){
     bars[i].visible = true;
   }
-
-  ballX = random(0, 127);
+  ballX = 64;
   ballY = frameY+10;
   ballXDirection = 1;
   ballYDirection = 1;
-  level = 2;
-}
-
-void populateBars(int level){
-  // populate bar collection
-  int offsetX = (128 - (10 * 12))/2 + 1;
-  for(int i = 0; i < 10; i++){
-    bars[i].x = i * 12 + offsetX;
-    bars[i].y = 5 + frameY + (level * 5);
-    bars[i].width = 10;
-    bars[i].height = 5;
-    bars[i].visible = true;
-  }
+  level = 1;
 }
 
 void setup() {
@@ -73,11 +60,17 @@ void setup() {
   button2.interval(5); 
   button2.setPressedState(LOW);
   
+  // populate bar collection
+  int offsetX = (128 - (10 * 12))/2 + 1;
+  for(int i = 0; i < 10; i++){
+    bars[i].x = i * 12 + offsetX;
+    bars[i].y = 5 + frameY;
+    bars[i].width = 10;
+    bars[i].height = 5;
+    bars[i].visible = true;
+  }
+
   resetGame();
-  populateBars(level);
-
-  ballX=1; ballY=frameY;
-
 }
 
 void drawPaddle(int x, int length){
