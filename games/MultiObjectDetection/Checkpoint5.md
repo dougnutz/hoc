@@ -1,4 +1,4 @@
-``` c++
+```c++
 #include <Arduino.h>
 #include "SSD1306Wire.h"   
 #include <Bounce2.h>
@@ -72,9 +72,6 @@ void setup() {
   }
 
   resetGame();
-
-  ballX=1; ballY=frameY;
-
 }
 
 void drawPaddle(int x, int length){
