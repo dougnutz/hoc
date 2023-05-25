@@ -20,7 +20,7 @@
   int ballYDirection = 1;
   int ballSpeed = 1;
   int score = 0;
-
+  
   struct bar{
   int x;
   int y;
@@ -28,21 +28,40 @@
   int height;
   bool visible;
 };
-bar bars[10];
+bar bars[5][10];
 int gameSpeed= 1;
 int level = 1;
 bool autoPlay = false;
 
-void resetGame(){
-  for(int i = 0; i < 10; i++){
-    bars[i].visible = true;
+void populateBars(int level){
+   // populate bar collection
+  int offsetX = (128 - (10 * 12))/2 + 1;
+  int offsetY =  frameY - 5;
+  for(int ii=0; ii<5; ii++){
+    //set each row down 2 pixels from the last
+    offsetY += 7;
+    for(int i = 0; i < 10; i++){
+      bars[ii][i].x = i * 12 + offsetX;
+      bars[ii][i].y = offsetY;
+      bars[ii][i].width = 10;
+      bars[ii][i].height = 5;
+      bars[ii][i].visible = ii<level;
+    }
   }
-  ballX = 64;
-  ballY = frameY+10;
+}
+
+void resetGame(){
+  
+  ballX = random(0, 127);
+  ballY = frameY+15;
   ballXDirection = 1;
   ballYDirection = 1;
   level = 1;
-}
+  gameSpeed = level;
+  populateBars(level);
+  }
+
+
 
 void setup() {
   // initialize com port
@@ -62,17 +81,10 @@ void setup() {
   button2.interval(5); 
   button2.setPressedState(LOW);
   
-  // populate bar collection
-  int offsetX = (128 - (10 * 12))/2 + 1;
-  for(int i = 0; i < 10; i++){
-    bars[i].x = i * 12 + offsetX;
-    bars[i].y = 5 + frameY;
-    bars[i].width = 10;
-    bars[i].height = 5;
-    bars[i].visible = true;
-  }
-
   resetGame();
+  populateBars(level);
+
+  // demo mode
   autoPlay = true;
 }
 
@@ -91,10 +103,11 @@ void drawBall(int x, int y){
 
 bool checkBarCollision(){
   bool collision=false;
+  for(int ii = 0; ii < 5; ii++)
   for(int i = 0; i < 10; i++){
-    if(bars[i].visible){
-      if(ballX > bars[i].x && ballX < bars[i].x + bars[i].width && ballY > bars[i].y && ballY < bars[i].y + bars[i].height){
-        bars[i].visible = false;
+    if(bars[ii][i].visible){
+      if(ballX > bars[ii][i].x && ballX < bars[ii][i].x + bars[ii][i].width && ballY > bars[ii][i].y && ballY < bars[ii][i].y + bars[ii][i].height){
+        bars[ii][i].visible = false;
         collision = true;
         score ++;
       }
@@ -105,8 +118,9 @@ bool checkBarCollision(){
 
 bool checkLevelCleared(){
   bool cleared = true;
+  for(int ii = 0; ii < 5; ii++)
   for(int i = 0; i < 10; i++){
-    if(bars[i].visible){
+    if(bars[ii][i].visible){
       cleared = false;
     }
   }
@@ -114,12 +128,9 @@ bool checkLevelCleared(){
 }
 
 void nextLevel(){
-  for(int i = 0; i < 10; i++){
-    bars[i].visible = true;
-  }
-  resetGame();
   gameSpeed++;
   level++;
+  populateBars(level);
 }
 
 void moveBall(){
@@ -165,19 +176,16 @@ void moveBall(){
 }
 
 void drawBars(){
+  for(int ii = 0; ii < 5; ii++)
   for(int i = 0; i < 10 ; i++){
-    if(bars[i].visible){
-      display.fillRect(bars[i].x, bars[i].y, bars[i].width, bars[i].height);
+    if(bars[ii][i].visible){
+      display.fillRect(bars[ii][i].x, bars[ii][i].y, bars[ii][i].width, bars[ii][i].height);
     }
   }
 }
 
 void loop() {
   display.clear();
-
-  if(autoPlay){
-    linePosition = ballX - lineWidth/2;
-  }
 
   // draw a frame, we will use a rectangle and start 10 pixels from the top  
   display.drawRect(0,frameY,128,64);
@@ -187,23 +195,27 @@ void loop() {
   moveBall();
 
   display.drawString(0, 0,  "Score: " + String(score));
-  display.drawString(60, 0,  "Level: " + String(level));
+  display.drawString(80, 0,  "Level: " + String(level));
  
   // update the button state 
   button.update();
   button2.update();
+
+    if(autoPlay){
+      linePosition = ballX - lineWidth/2;
+    }
   
    // check to see if the button is pressed, if so move the line to the right 10 pixels
     if (button.isPressed()){
       Serial.println("linePosition: " + String(linePosition));
       linePosition = linePosition + lineWidth/4;
-      autoPlay = false;
+      autoPlay= false;
     }
 
     if(button2.isPressed()){
       Serial.println("linePosition: " + String(linePosition));
       linePosition = linePosition - lineWidth/4;
-      autoPlay = false;
+      autoPlay= false;
     }
 
     // if the line is off the screen move it back to the left side
@@ -217,8 +229,13 @@ void loop() {
     // draw the line
     drawPaddle(linePosition, lineWidth);
 
-   
-   delay(100/gameSpeed);
+   // set the delay time to 50 minus the game speed times 2 with a minimum of 0
+  // this will speed up the game as the levels increase
+  int delayTime = 50 - gameSpeed*2;
+  if(delayTime < 0){
+    delayTime = 0;
+  }
+   delay(delayTime);
  
 }
 ```
