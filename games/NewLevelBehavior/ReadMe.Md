@@ -196,6 +196,9 @@ Now lets change up the game a bit so it doesn't always start in the same way. In
 ```C++
   ballX = random(0, 127);
 ```
+Upload the code and validate that the ball starts in a random position. If you have any issues compare your code to the solution.md file.
+
+Great work!
 
 # Troubleshooting
 This exercise was based on initial published libraries for the maker focus board. If the Hellow world project doesn't load try these steps instead
