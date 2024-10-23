@@ -1,8 +1,8 @@
 #include <WebRead.h>
 #include "SSD1306Wire.h"  
 
-char ssid[] = "LHome";     //  your network SSID (name)
-char pass[] = "DougAndErikaWireless";  // your network password
+char ssid[] = "MyNetwork";     //  your network SSID (name)
+char pass[] = "<redacted>";  // your network password
 char gateUrl[]="http://hocfun.azurewebsites.net/api/echo?code=<code>&name=<studentName>";
 WebRead webRead;
 SSD1306Wire display(0x3c, D3, D5);  // ADDRESS, SDA, SCL  
