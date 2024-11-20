@@ -1,4 +1,9 @@
 # Mecanum wheel robot basic movements
+For this project we will use a basic Mecanum wheel robot. There are lots of kits available we will use one based on the arduino uno. Specificially this [one](https://www.hiwonder.com/products/miniauto-1?variant=41259314577495). 
+
+For the first part we only need the basic chassis, motors, wheels, arduino, expansion shield, and battery 
+![image](https://github.com/user-attachments/assets/41edf6ea-6728-45e7-afd5-11172de82dd8)
+
 
 ## Setup
 We will start by defining the pins and the functions that will be used to control the motors. The pins are defined as static const arrays. The first array is used to define the pins that will be used to control the direction of the motors. The second array is used to define the pins that will be used to control the speed of the motors.
