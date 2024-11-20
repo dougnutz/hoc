@@ -1,5 +1,5 @@
 # Mecanum wheel robot basic movements
-For this project we will use a basic Mecanum wheel robot. There are lots of kits available we will use one based on the arduino uno. Specificially this [one](https://www.hiwonder.com/products/miniauto-1?variant=41259314577495). 
+For this project we will use a basic Mecanum wheel robot. There are lots of kits available. We will use one based on the arduino uno. Specifically  this [one](https://www.hiwonder.com/products/miniauto-1?variant=41259314577495). 
 
 For the first part we only need the basic chassis, motors, wheels, arduino, expansion shield, and battery 
 ![image](https://github.com/user-attachments/assets/41edf6ea-6728-45e7-afd5-11172de82dd8)
