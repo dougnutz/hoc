@@ -81,9 +81,6 @@ void Motor_Move(void) {
     analogWrite(motorpwmPin[i], 125); // Set speed to 125
   }
   Serial.println("Move forward");
-  delay(1000);
-  Motor_Stop();
-  Serial.println("End Setup");
 }
 ```
 
@@ -168,3 +165,36 @@ Do not forget to update the function call in the setup function to pass the para
   delay(1000);
 ```
 
+Checkpoint 3
+Upload the code and validate that the robot moves forward and backward.
+
+See the [Solution](Solution_3.md) for the complete code.
+
+
+## Move left and right
+To move the robot left and right we need to set the left side motors to move backward and the right side motors to move forward. We will modify the move function to set the direction of the motors based on their position. The left side motors will move backward and the right side motors will move forward.
+
+We can basically copy the Motor Move function and create a Motor_MoveSideways function.
+- Copy the Motor_Move function and paste it below the Motor_Move function.
+- Rename the function to Motor_MoveSideways.
+- Create a function prototype for the Motor_MoveSideways function.
+```cpp
+void Motor_Spin(bool isRight);
+```
+- Change the code to set the direction of the motors based on the position of the motor. The left side motors will move backward and the right side motors will move forward. The direction variables need to represent the direction we want the motors to rotate in order to move right
+```cpp
+  bool direction[4] = { 0, 1, 1, 0};/// right 1, left 0
+``` 
+### Call the function from the setup function
+- Call the Motor_MoveSideways function from the setup function to move the robot left and right.
+```cpp
+  Motor_MoveSideways(true); ///Move left
+  delay(1000);
+  Motor_MoveSideways(false); ///Move right
+  delay(1000);
+```
+
+### Checkpoint 4
+Upload the code and validate that the robot moves left and right.
+
+See the [Solution](Solution_4.md) for the complete code.
