@@ -1,4 +1,4 @@
-
+```cpp
 #include <Arduino.h>
 
 /*
@@ -115,22 +115,13 @@ void Motors_Set(int8_t Motor_0, int8_t Motor_1, int8_t Motor_2, int8_t Motor_3) 
   int8_t motors[4] = { Motor_0, Motor_1, Motor_2, Motor_3};
   bool direction[4] = { 1, 0, 0, 1};///forward, left 1, right 0
   for(uint8_t i=0; i < 4; ++i) {
-    if(motors[i] < 0){
-       direction[i] = !direction[i]; 
-    } else {
-      direction[i] = direction[i];
-    } 
-
-    if(motors[i] == 0){
-      pwm_set[i] = 0;
-    }else {
-      pwm_set[i] = map(abs(motors[i]), 0, 100, pwm_min, 255);
+    direction[i] = motors[i] < 0 ? !direction[i] : direction[i];
+      pwm_set[i] = motors[i] == 0 ? 0 : map(abs(motors[i]), 0, 100, pwm_min, 255);
       Serial.println(pwm_set[i]);
-    } 
-
-    digitalWrite(motordirectionPin[i], direction[i]); 
-    analogWrite(motorpwmPin[i], pwm_set[i]); 
+      digitalWrite(motordirectionPin[i], direction[i]);
+      analogWrite(motorpwmPin[i], pwm_set[i]);
   }
 }
 
   void loop() {}
+  ```
