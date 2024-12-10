@@ -11,6 +11,9 @@ According to the physical kinematics of the Mecanum wheel, when forces are equal
 
 Based on Newton's second law, f=maa, if the force is equal and opposite, the acceleration is also equal and opposite. The front and rear tires produce forward and angular acceleration. Since the angular acceleration is equal and opposite they cancel each other out. However if the front and back wheels are not spinning at the same speed the robot will turn.
 
+![image](https://github.com/user-attachments/assets/7b2f59f1-faea-4a37-a3a6-9ef56fc37108)
+
+
 For this exercise we will look only at moving the robot on a given angle from 0 to 359 degrees. The degrees are calculated clockwise from Forward being 0 degrees, right being 90 degrees, backward being 180 degrees, and left being 270 degrees. 
 
 We will also supply a velocity from 0 to 100. This will be the speed of the robot. 
