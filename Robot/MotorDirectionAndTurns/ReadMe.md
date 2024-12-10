@@ -18,7 +18,15 @@ For this exercise we will look only at moving the robot on a given angle from 0 
 
 We will also supply a velocity from 0 to 100. This will be the speed of the robot. 
 
+## Let's take a look at the code so far
+Open main.cpp. Notice we have constants defined for the motor pins. We also have the function prototypes defined. for the Motor_Init, Motor_Stop, Velocity_Controller, and Motors_Set functions.
 
+As with our last lesson Motor_Init is used to set the motor pins as outputs. Motor_Stop is used to stop the motors. 
+
+The new code will be the velocity_controller function and the motors_set function.
+The motors_set function is used to set the speed and direction of the motors. The velocity_controller function is used to calculate the speed and direction of the robot from the angle and velocity inputs.
+
+Inside the Setup Function we initialize the serial port and call the Motor_Init function. We then call the Motor_Stop function to make sure we stop the motors. We also added some Searial.println statements to help us debug the code.
 
 ## Setting Motor Speeds
 The Motors_Set function is designed to control the PWM (Pulse Width Modulation) and direction of four motors. The function takes four parameters, each representing the control value for one motor.
@@ -106,6 +114,7 @@ What do you expect to happen when you run this code?
 
 
 How would you make the robot move backwards?
+
 Hint :negative values
 
 ### Checkpoint 1
