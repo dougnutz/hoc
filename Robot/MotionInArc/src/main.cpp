@@ -17,7 +17,7 @@ const static uint8_t motordirectionPin[4] = { 13,8,7,12 };  ///pins for controll
 void Motor_Init(void);
 void Motor_Stop(void);
 void Motors_Set(int8_t Motor_0, int8_t Motor_1, int8_t Motor_2, int8_t Motor_3);
-void Velocity_Controller(uint16_t angle, uint8_t velocity,int8_t rot,bool drift);
+void Velocity_Controller(uint16_t angle, uint8_t velocity);
 
 
 void setup() {
@@ -25,13 +25,6 @@ void setup() {
   Serial.begin(9600);  // Open serial port at 9600 bps
 
   Motor_Init(); ///Initialize the motors
-
-  Velocity_Controller(0, 0,100,0);  ///Turn left in place
-  delay(1000);
-  Velocity_Controller(0, 0,-100,0); ///Turn right in place
-  delay(1000); 
-  Velocity_Controller(0,100,50,1); // drift left
-  delay(1000);
 
   Motor_Stop();
   Serial.println("End Setup");
@@ -47,24 +40,32 @@ void setup() {
  * @param drift   "drift" determines whether the robot enables drift. Value range: 0 or 1. If it is 0, drift is enabled; otherwise, it is disabled)
  * @retval None
  */
-void Velocity_Controller(uint16_t angle, uint8_t velocity,int8_t rot,bool drift) {
-  int8_t velocities[4]; 
+void Velocity_Controller(uint16_t angle, uint8_t velocity) {
+
+  int8_t velocities[4];
   angle += 90;
   float rad = angle * PI / 180;
   velocity /= sqrt(2);
-  
-  float rotationSpeed = (rot == 0) ? 1 : 0.5;
-  if (drift) {
-    velocities[0] = (velocity * sin(rad) - velocity * cos(rad)) * rotationSpeed + rot * rotationSpeed;
-    velocities[1] = (velocity * sin(rad) + velocity * cos(rad)) * rotationSpeed - rot * rotationSpeed;
-    velocities[2] = (velocity * sin(rad) - velocity * cos(rad)) * rotationSpeed - rot * rotationSpeed * 2;
-    velocities[3] = (velocity * sin(rad) + velocity * cos(rad)) * rotationSpeed + rot * rotationSpeed * 2;
-  } else {
-    velocities[0] = (velocity * sin(rad) - velocity * cos(rad)) * rotationSpeed + rot * rotationSpeed;
-    velocities[1] = (velocity * sin(rad) + velocity * cos(rad)) * rotationSpeed - rot * rotationSpeed;
-    velocities[2] = (velocity * sin(rad) - velocity * cos(rad)) * rotationSpeed - rot * rotationSpeed;
-    velocities[3] = (velocity * sin(rad) + velocity * cos(rad)) * rotationSpeed + rot * rotationSpeed;
+ 
+ // Delete me when instructed to do so
+  for (int i = 0; i < 4; i++) {
+    float factor = (i % 2 == 0) ? -1 : 1;
+    velocities[i] = (velocity * sin(rad) + factor * velocity * cos(rad));
   }
+
+// Uncomment me after deleting the for loop
+//   float rotationSpeed = (rot == 0) ? 1 : 0.5;
+//   if (drift) {
+//     velocities[0] = (velocity * sin(rad) - velocity * cos(rad)) * rotationSpeed + rot * rotationSpeed;
+//     velocities[1] = (velocity * sin(rad) + velocity * cos(rad)) * rotationSpeed - rot * rotationSpeed;
+//     velocities[2] = (velocity * sin(rad) - velocity * cos(rad)) * rotationSpeed - rot * rotationSpeed * 2;
+//     velocities[3] = (velocity * sin(rad) + velocity * cos(rad)) * rotationSpeed + rot * rotationSpeed * 2;
+//   } else {
+//     velocities[0] = (velocity * sin(rad) - velocity * cos(rad)) * rotationSpeed + rot * rotationSpeed;
+//     velocities[1] = (velocity * sin(rad) + velocity * cos(rad)) * rotationSpeed - rot * rotationSpeed;
+//     velocities[2] = (velocity * sin(rad) - velocity * cos(rad)) * rotationSpeed - rot * rotationSpeed;
+//     velocities[3] = (velocity * sin(rad) + velocity * cos(rad)) * rotationSpeed + rot * rotationSpeed;
+//   }
 
   Motors_Set(velocities[0], velocities[1], velocities[2], velocities[3]);
 
@@ -77,7 +78,7 @@ void Motor_Init(void){
   for(uint8_t i = 0; i < 4; i++){
     pinMode(motordirectionPin[i], OUTPUT);
   }
-  Velocity_Controller( 0, 0 , 0, 0);
+  Velocity_Controller( 0, 0);
 } 
 
 
