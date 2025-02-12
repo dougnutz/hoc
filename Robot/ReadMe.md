@@ -8,5 +8,9 @@
 ## Motion Control
 - Mecanum wheel robot [basics](https://github.com/dougnutz/hoc/tree/master/Robot/MotionControlBasics)
 - More advanced [movement](https://github.com/dougnutz/hoc/tree/master/Robot/MotorDirectionAndTurns)
+- Movement in [through an arc](https://github.com/dougnutz/hoc/tree/master/Robot/MotionInArc) 
+
+## Sensor Control
+- Using a sensor to [follow a line](https://github.com/dougnutz/hoc/blob/master/Robot/LineFollowing/Readme.md)
 
 ###
