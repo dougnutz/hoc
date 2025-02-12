@@ -1,3 +1,4 @@
+```cpp
 #include <Arduino.h>
 #include "Movement.h"
 #include "Helper.h"
@@ -32,26 +33,24 @@ void setup() {
 void loop() {
   keyState = analogRead(keyPin);  // Read the keyPin and assign the value to keyState
 
+  keyState = analogRead(keyPin);
 
-  if (keyState == LOW && !taskStart) {
-    Serial.println(" Task Start");
-    taskStart = 1;
-    Helper::Rgb_Show(255, 255, 255);  // Turn the LED white
-    delay(1000);
-    Movement::Velocity_Controller(0, 80, 0, 0);  // Move the robot forward
-  } else if (keyState == LOW && taskStart) {
-    Serial.println(" Task End");
-    taskStart = 0;
-    Helper::Rgb_Show(0, 0, 0);  // Turn off the LED
-    Movement::Motor_Stop();  // Stop the robot
-    delay(1000);
-  }
-
-
-    if (taskStart) {
-        Sensor_Receive();
-        Task_Dispatcher();
+    if (keyState == LOW && !taskStart) {
+      Helper::Rgb_Show(255,255,255);
+      taskStart = 1;
+      delay(1000);
+    } else if (keyState == LOW && taskStart) {
+      taskStart = 0;
+      Helper::Rgb_Show(0, 0, 0);  // Turn off the LED
+      Movement::Motor_Stop();  // Stop the robot
+      delay(1000);
     }
+
+
+  if (taskStart) {
+      Sensor_Receive();
+      Task_Dispatcher();
+  }
 }
 
 void Task_Dispatcher() {
@@ -71,18 +70,24 @@ void Sensor_Receive(void) {
 }
 
 void Tracking_Line_Task(void) {
-  Helper::Rgb_Show(255, 0, 0);
+  Helper::Rgb_Show(0, 100, 0);
   if (rec_data[1] == 1 && rec_data[2] == 1) {
     Movement::Velocity_Controller(0, 80, 0, 0);
+    Serial.println("Forward");
   }
   if (rec_data[1] == 1 && rec_data[2] == 0) {
     Movement::Velocity_Controller(0, 80, 65, 0);
+    Serial.println("Right");
   }
   if (rec_data[1] == 0 && rec_data[2] == 1) {
     Movement::Velocity_Controller(0, 80, -65, 0);
+    Serial.println("Left");
   }
   while (rec_data[1] == 0 && rec_data[2] == 0) {
     Sensor_Receive();
-    Movement::Velocity_Controller(0, 0, 0, 0);
+    Movement::Motor_Stop();
+    Helper::Rgb_Show(255, 0, 0);
+    Serial.println("No line detected");
   }
 }
+```

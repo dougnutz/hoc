@@ -144,16 +144,16 @@ In the setup() add the following lines under the `pinMode(startPin, INPUT);` lin
 In the loop() function we will turn on the led when the button if the button is pressed and turn it off when the button is released. Add the following code to the loop() function in the "main.cpp" file:
 Let's use White for the LED. The function we will use is:
 ```cpp
-Helper::SetLed();
+Helper::Rgb_Show();
 ```
 Helper::SetLed() takes three arguments, the first is the red value, the second is the green value, and the third is the blue value. The values range from 0 to 255. So, for white, we will use 255, 255, 255. The function will look like this:
 
 ```cpp
   keyState = digitalRead(startPin);  // Read the keyPin and assign the value to keyState
   if (keyState == 0) {  // If the key is pressed, the keyState is 0
-    Helper::SetLed(0, 255, 0);  // Set the LED to green
+    Helper::Rgb_Show(0, 255, 0);  // Set the LED to green
   } else {  // If the key is not pressed, the keyState is 1
-    Helper::SetLed(0, 0, 0);  // Set the LED to off
+    Helper::Rgb_Show(0, 0, 0);  // Set the LED to off
   }
 ```
 
@@ -186,17 +186,58 @@ void Sensor_Receive(void);
 
 
 Next, we will delete all of our test code in side the loop() except the "keyState = analogRead(keyPin);"
-Under that line we will add the following code:
+
+Then, Under that line we will add the following code:
 ```cpp
   keyState = analogRead(keyPin);  // Read the keyPin and assign the value to keyState
-    if (!keyState) {
+    if (keyState == LOW && !taskStart) {
         taskStart = 1;
+    } else if (keyState == LOW && taskStart) {
+        taskStart = 0;
     }
+  
     if (taskStart) {
         Sensor_Receive();
         Task_Dispatcher();
     }
 ```
+This will add a new state to the robot. When the button is pressed, the robot will start following the line. When the button is pressed again, the robot will stop following the line. We need a little delay in here to debounce the button. Add the following line after each taskStart line:
+```cpp
+  delay(100);
+```
+Now that we detected button state lets turn on the led to indicate the button was pressed. Add the following line to the first if statement:
+```cpp
+  Helper::Rgb_Show(255, 255, 255);  // Turn the LED white
+```
+And add the following line to the second statement to stop the robot and turn off the LED, indicating the task ended:
+```cpp
+  Helper::Rgb_Show(0, 0, 0);  // Turn off the LED
+  Movement::Motor_Stop();  // Stop the robot
+``
+
+Your loop() function should look like this:
+```cpp
+void loop() {
+  keyState = analogRead(keyPin);  // Read the keyPin and assign the value to keyState
+    if (keyState == LOW && !taskStart) {
+        taskStart = 1;
+        Helper::Rgb_Show(255, 255, 255);  // Turn the LED white
+        delay(1000);
+        Movement::Velocity_Controller(0, 80, 0, 0);  // Move the robot forward
+    } else if (keyState == LOW && taskStart) {
+        taskStart = 0;
+        Helper::Rgb_Show(0, 0, 0);  // Turn off the LED
+        Movement::Motor_Stop();  // Stop the robot
+        delay(1000);
+    }
+
+
+    if (taskStart) {
+        Sensor_Receive();
+        Task_Dispatcher();
+    }
+```
+
 
 Lets add write the `Sensor_Receive()` and `Task_Dispatcher()` functions. Add the following code to the "main.cpp" file after the Loop():
 ```cpp
@@ -224,22 +265,28 @@ Let's make sure everything still compiles. If it does, we can move on to the nex
 The last step is the actual line following code. We will impliment the function called `Tracking_Line_Task()`. This function will be called repeatedly to track the line.
 ```cpp
 void Tracking_Line_Task(void) {
-  Helper::Rgb_Show(255, 0, 0);
+  Helper::Rgb_Show(0, 255, 0);
   if (rec_data[1] == 1 && rec_data[2] == 1) {
     Movement::Velocity_Controller(0, 80, 0, 0);
+    Serial.println("Forward");
   }
   if (rec_data[1] == 1 && rec_data[2] == 0) {
     Movement::Velocity_Controller(0, 80, 65, 0);
+    Serial.println("Right");
   }
   if (rec_data[1] == 0 && rec_data[2] == 1) {
     Movement::Velocity_Controller(0, 80, -65, 0);
+    Serial.println("Left");
   }
   while (rec_data[1] == 0 && rec_data[2] == 0) {
     Sensor_Receive();
     Movement::Velocity_Controller(0, 0, 0, 0);
+    Serial.println("No line detected");
   }
 }```
 
+### Debugging
+If the robot is not detecting the line or lack of a line, then you can adjust the potentiometer located on the sensor. Turning the knob clockwise will increase the detection distance, while turning it counterclockwise will shorten the detection distance.
 
 
 
