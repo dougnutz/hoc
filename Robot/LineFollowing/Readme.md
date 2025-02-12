@@ -257,6 +257,10 @@ void Sensor_Receive(void) {
   rec_data[3] = (data >> 3) & 0x01;
 }
 ```
+#### note: what is this code doing?
+The `Sensor_Receive()` function is reading the data from the LED and sensor module. The data is a single byte, which is 8 bits. We are only using 4 bits of the byte. The first bit is the left sensor, the second bit is the second sensor and so on. We are using bitwise operators to extract the bits from the byte to store them in the data array so that it is more easily accessed in our line tracking task. 
+The `&` operator is used to extract the bits, and the `>>` operator is used to shift the bits to the right.
+So for example if the data is 0b00000101 we extract the bits one at a time. the line `rec_data[2] = (data >> 2) & 0x01;` will shift the data 2 bits to the right, so it will be 0b00000001. Then we use the `&` operator to extract the first bit, which is 1. So rec_data[2] will be 1.
 
 ### Checkpoint
 Let's make sure everything still compiles. If it does, we can move on to the next step. If you have any issues, compare your code to the code in the "Solution_4.md" file.
