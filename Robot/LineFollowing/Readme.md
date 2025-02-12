@@ -293,6 +293,7 @@ void Tracking_Line_Task(void) {
 If the robot is not detecting the line or lack of a line, then you can adjust the potentiometer located on the sensor. Turning the knob clockwise will increase the detection distance, while turning it counterclockwise will shorten the detection distance.
 
 
+![image](https://github.com/user-attachments/assets/b7a98a78-08fe-4994-9f51-43aeba6a3a74)
 
 
 
