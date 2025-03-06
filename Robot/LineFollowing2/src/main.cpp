@@ -5,7 +5,7 @@
 
 const static uint8_t keyPin = 3;  // Define the keyPin as 3
 const static uint8_t TRACKING = 4;
-const static uint8_t Speed=55; // robot line tracking speed
+const static uint8_t Speed=60; // robot line tracking speed
 
 bool keyState;  //Detect button status
 bool taskStart = 0;
@@ -38,12 +38,12 @@ void loop() {
     if (keyState == LOW && !taskStart) {
       Helper::Rgb_Show(255,255,255);
       taskStart = 1;
-      delay(500);
+      delay(1000);
     } else if (keyState == LOW && taskStart) {
       taskStart = 0;
       Helper::Rgb_Show(0, 0, 0);  // Turn off the LED
       Movement::Motor_Stop();  // Stop the robot
-      delay(500);
+      delay(1000);
     }
 
 
@@ -71,21 +71,6 @@ void Sensor_Receive(void) {
 
 void Tracking_Line_Task(void) {
   Helper::Rgb_Show(0, 100, 0);
-
-  if (rec_data[0] == 1 || rec_data[3] == 1) {  // Detect intersection
-    Serial.println("Intersection detected");
-    Movement::Motor_Stop();
-    Helper::Rgb_Show(0, 0, 255);
-    delay(500);
-    // turn right until we find the line
-    do {
-      Movement:: Velocity_Controller(0,0,-45,0); 
-      Serial.println("Turning right");
-      delay(50);
-      Sensor_Receive();
-    }
-    while ((rec_data[0] == 1 || rec_data[3] == 1) || (rec_data[1] == 0 || rec_data[2] == 0));
-  }
   if (rec_data[1] == 1 && rec_data[2] == 1) {
     Movement::Velocity_Controller(0, Speed, 0, 0);
     Serial.println("Forward");
