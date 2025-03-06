@@ -6,7 +6,7 @@
 
 const static uint8_t keyPin = 3;  // Define the keyPin as 3
 const static uint8_t TRACKING = 4;
-const static uint8_t Speed=50; // robot line tracking speed
+const static uint8_t Speed=55; // robot line tracking speed
 
 bool keyState;  //Detect button status
 bool taskStart = 0;
@@ -80,13 +80,14 @@ void Tracking_Line_Task(void) {
     delay(500);
     // turn right until we find the line
     do {
-   
-      delay(50);   Sensor_Receive();
-      MovemMovement::Velocity_Controller(0,Speed,-50,1);  Serial.println("Turning right");
+      Movement:: Velocity_Controller(0,0,-45,0); 
+      Serial.println("Turning right");
+      delay(50);
+      Sensor_Receive();
     }
-    w    while (r(rec_data[0] == 1 || rec_data[3] == 1) || (ec_data[1] == 0 || rec_data[2] == 0);)
-e (rec_data[1] == 0 || rec_data[2] == 0);
- {
+    while ((rec_data[0] == 1 || rec_data[3] == 1) || (rec_data[1] == 0 || rec_data[2] == 0));
+  }
+  if (rec_data[1] == 1 && rec_data[2] == 1) {
     Movement::Velocity_Controller(0, Speed, 0, 0);
     Serial.println("Forward");
   }
@@ -98,11 +99,13 @@ e (rec_data[1] == 0 || rec_data[2] == 0);
     Movement::Velocity_Controller(0, Speed, -65, 0);
     Serial.println("Left");
   }
-  while (rec_data[1] == 0 && rec_data[2] == 0) {
+  if (rec_data[1] == 0 && rec_data[2] == 0) {
     Sensor_Receive();
     Movement::Motor_Stop();
+    delay(500);
     Helper::Rgb_Show(255, 0, 0);
     Serial.println("No line detected");
   }
 }
+
 ```

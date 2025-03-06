@@ -5,7 +5,7 @@
 
 const static uint8_t keyPin = 3;  // Define the keyPin as 3
 const static uint8_t TRACKING = 4;
-const static uint8_t Speed=60; // robot line tracking speed
+const static uint8_t Speed=55; // robot line tracking speed
 
 bool keyState;  //Detect button status
 bool taskStart = 0;

@@ -20,10 +20,12 @@ Upload the code and make sure the robot stops at the intersection and the LED tu
 ### Turn right and continue
 Next up, now that we detected the intersection we need to turn the robot to the right to align with the new line
 ```cpp
-  // turn right until we find the line
-  do {
-    delay(50);   Sensor_Receive();
-    Movement::Velocity_Controller(0,Speed,-50,1);  Serial.println("Turning right");
-  }
-  while (rec_data[0] == 1 || rec_data[3] == 1);
+do {
+      Movement:: Velocity_Controller(0,0,-45,0); 
+      Serial.println("Turning right");
+      delay(50);
+      Sensor_Receive();
+    }
+    while ((rec_data[0] == 1 || rec_data[3] == 1) || (rec_data[1] == 0 || rec_data[2] == 0));
 ```
+
