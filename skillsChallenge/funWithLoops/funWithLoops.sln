@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "funWithLoops.ConsoleApp", "funWithLoops.ConsoleApp\funWithLoops.ConsoleApp.csproj", "{2D4CB9E0-166E-444D-8346-30DD4F713BC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "funWithLoops.Tests", "funWithLoops.Tests\funWithLoops.Tests.csproj", "{CC531C7E-157B-4271-9BD7-F040613F24F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D4CB9E0-166E-444D-8346-30DD4F713BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D4CB9E0-166E-444D-8346-30DD4F713BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D4CB9E0-166E-444D-8346-30DD4F713BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D4CB9E0-166E-444D-8346-30DD4F713BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC531C7E-157B-4271-9BD7-F040613F24F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC531C7E-157B-4271-9BD7-F040613F24F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC531C7E-157B-4271-9BD7-F040613F24F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC531C7E-157B-4271-9BD7-F040613F24F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

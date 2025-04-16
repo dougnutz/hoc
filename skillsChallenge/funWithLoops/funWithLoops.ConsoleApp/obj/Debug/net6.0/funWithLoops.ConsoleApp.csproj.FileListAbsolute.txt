@@ -1,0 +1,15 @@
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\bin\Debug\net6.0\funWithLoops.ConsoleApp.exe
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\bin\Debug\net6.0\funWithLoops.ConsoleApp.deps.json
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\bin\Debug\net6.0\funWithLoops.ConsoleApp.runtimeconfig.json
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\bin\Debug\net6.0\funWithLoops.ConsoleApp.dll
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\bin\Debug\net6.0\funWithLoops.ConsoleApp.pdb
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\obj\Debug\net6.0\funWithLoops.ConsoleApp.csproj.AssemblyReference.cache
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\obj\Debug\net6.0\funWithLoops.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\obj\Debug\net6.0\funWithLoops.ConsoleApp.AssemblyInfoInputs.cache
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\obj\Debug\net6.0\funWithLoops.ConsoleApp.AssemblyInfo.cs
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\obj\Debug\net6.0\funWithLoops.ConsoleApp.csproj.CoreCompileInputs.cache
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\obj\Debug\net6.0\funWithLoops.ConsoleApp.dll
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\obj\Debug\net6.0\refint\funWithLoops.ConsoleApp.dll
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\obj\Debug\net6.0\funWithLoops.ConsoleApp.pdb
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\obj\Debug\net6.0\funWithLoops.ConsoleApp.genruntimeconfig.cache
+C:\src\hoc\skillsChallenge\funWithLoops\funWithLoops.ConsoleApp\obj\Debug\net6.0\ref\funWithLoops.ConsoleApp.dll
