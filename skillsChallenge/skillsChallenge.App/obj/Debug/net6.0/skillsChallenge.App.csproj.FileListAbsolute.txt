@@ -1,0 +1,15 @@
+C:\src\hoc\skillsChallenge\skillsChallenge.App\bin\Debug\net6.0\skillsChallenge.App.exe
+C:\src\hoc\skillsChallenge\skillsChallenge.App\bin\Debug\net6.0\skillsChallenge.App.deps.json
+C:\src\hoc\skillsChallenge\skillsChallenge.App\bin\Debug\net6.0\skillsChallenge.App.runtimeconfig.json
+C:\src\hoc\skillsChallenge\skillsChallenge.App\bin\Debug\net6.0\skillsChallenge.App.dll
+C:\src\hoc\skillsChallenge\skillsChallenge.App\bin\Debug\net6.0\skillsChallenge.App.pdb
+C:\src\hoc\skillsChallenge\skillsChallenge.App\obj\Debug\net6.0\skillsChallenge.App.csproj.AssemblyReference.cache
+C:\src\hoc\skillsChallenge\skillsChallenge.App\obj\Debug\net6.0\skillsChallenge.App.GeneratedMSBuildEditorConfig.editorconfig
+C:\src\hoc\skillsChallenge\skillsChallenge.App\obj\Debug\net6.0\skillsChallenge.App.AssemblyInfoInputs.cache
+C:\src\hoc\skillsChallenge\skillsChallenge.App\obj\Debug\net6.0\skillsChallenge.App.AssemblyInfo.cs
+C:\src\hoc\skillsChallenge\skillsChallenge.App\obj\Debug\net6.0\skillsChallenge.App.csproj.CoreCompileInputs.cache
+C:\src\hoc\skillsChallenge\skillsChallenge.App\obj\Debug\net6.0\skillsChallenge.App.dll
+C:\src\hoc\skillsChallenge\skillsChallenge.App\obj\Debug\net6.0\refint\skillsChallenge.App.dll
+C:\src\hoc\skillsChallenge\skillsChallenge.App\obj\Debug\net6.0\skillsChallenge.App.pdb
+C:\src\hoc\skillsChallenge\skillsChallenge.App\obj\Debug\net6.0\skillsChallenge.App.genruntimeconfig.cache
+C:\src\hoc\skillsChallenge\skillsChallenge.App\obj\Debug\net6.0\ref\skillsChallenge.App.dll
