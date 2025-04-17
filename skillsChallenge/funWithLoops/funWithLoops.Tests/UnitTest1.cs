@@ -14,6 +14,16 @@ namespace funWithLoops.Tests
             // Assert
             Assert.Equal("0 1 2 3 4", result);
         }
+        
+        [Fact]
+        public void ForLoopBy7s_ReturnsCorrectResult()
+        {
+            // Act
+            var result = Program.ForLoopBy7s();
+
+            // Assert
+            Assert.Equal("0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70", result);
+        }
 
         [Fact]
         public void WhileLoopExample_ReturnsCorrectResult()
@@ -43,6 +53,16 @@ namespace funWithLoops.Tests
 
             // Assert
             Assert.Equal("0 1 2 3 4", result);
+        }
+
+        [Fact]
+        public void RecursiveSum_ReturnsCorrectResult()
+        {
+            // Act
+            var result = Program.RecursiveSum(5);
+
+            // Assert
+            Assert.Equal(15, result); // 5 + 4 + 3 + 2 + 1 + 0 = 15
         }
     }
 }
