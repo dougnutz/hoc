@@ -18,23 +18,20 @@ public class Program
         int dimes = 0;
         int nickels = 0;
         int pennies = 0;
-
-        // todo - calculate the change
-        // start with the largest denomination and work downwards
         dollars = totalCents / 100;
         totalCents %= 100;
 
-        // calculate quarters
+        quarters = totalCents / 25;
+        totalCents %= 25;
 
-        // calculate dimes
+        dimes = totalCents / 10;
+        totalCents %= 10;
 
-        // calculate nickels
-
-        // calculate pennies
+        nickels = totalCents / 5;
+        totalCents %= 5;
 
         pennies = totalCents;
 
-
-        return (dollars, quarters, dimes, nickels, pennies);
+       return (dollars, quarters, dimes, nickels, pennies);
     }
 }

@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QnAApp", "QnAApp\QnAApp.csproj", "{07A2F8F0-235E-A8DF-B173-217A822E8D8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QnAApp.Tests", "QnAApp.Tests\QnAApp.Tests.csproj", "{E3921DB6-16A5-8B7F-110D-03B15EEF2161}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07A2F8F0-235E-A8DF-B173-217A822E8D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07A2F8F0-235E-A8DF-B173-217A822E8D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07A2F8F0-235E-A8DF-B173-217A822E8D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07A2F8F0-235E-A8DF-B173-217A822E8D8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3921DB6-16A5-8B7F-110D-03B15EEF2161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3921DB6-16A5-8B7F-110D-03B15EEF2161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3921DB6-16A5-8B7F-110D-03B15EEF2161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3921DB6-16A5-8B7F-110D-03B15EEF2161}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F9B3A2F-DEF4-4964-A0B4-66AB35BE5D60}
+	EndGlobalSection
+EndGlobal
