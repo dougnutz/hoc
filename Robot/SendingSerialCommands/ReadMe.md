@@ -22,13 +22,27 @@ This project provides Arduino code to control a mecanum wheel robot using serial
 - Understand how to send serial commands to control robot movement (direction, speed, rotation, drift).
 - Learn to send serial commands to set the color of the onboard RGB LED.
 
+## Starting point
+Open the `src/main.cpp` file in your Arduino IDE. This file contains the initial setup for the robot, including motor initialization and RGB LED control. Take a look at the code to familiarize yourself with the structure and functions provided. This code is similar to our previous lessions, containing basic setup for the robot's motors and RGB LED.
+
+Upload the code and ensure the RGB diode cycles through red, blue, and green colors during setup. This confirms that the RGB LED is functioning correctly.
+
+## Install the Serial Monitor Extension
+To interact with the robot via serial commands, you need to install the Serial Monitor extension in your Arduino IDE. This extension allows you to send commands to the robot and receive feedback through the Serial Monitor.
+1. Go to the Extensions view by clicking the square icon on the sidebar or pressing Ctrl+Shift+X.
+2. In the search bar, type Serial monitor.
+3. Find the extension named Arduino by Microsoft and click Install.
+4. Once installed if the Serial Monitor is not visible click the Terminal tab at the top of the ide and select new Terminal.
+
+## Lesson Steps
+
 ### Step 1: Listening for Serial Commands in the loop() Function
 
 In this step, we add code to the `loop()` function to listen for commands sent over the serial port. The robot waits for input from the serial monitor (or another serial sender), and collects characters until it sees the special end-of-command character `$`.
 Add the following code to the `loop()` function:
 
 ```cpp
-void loop() {
+
   while (Serial.available()) {
     String cmd = Serial.readStringUntil('$');
     cmd.trim();
@@ -38,7 +52,7 @@ void loop() {
       cmd = "";
     
   }
-}
+
 ```
 
 **How it works:**
@@ -53,7 +67,7 @@ void loop() {
 
 Upload the code to your Arduino board and open the Serial Monitor. Follow these steps to test the serial communication:
 #### 1. Open the Serial Monitor
-- In the Arduino IDE, go to **Tools** > **Serial Monitor** or press `Ctrl + Shift + M`.
+- In the Arduino IDE, go to **Tools** > **Serial Monitor** or press `Ctrl + Shift + P` and type SerialMonitor.
 - Set the baud rate to **9600**.
 #### 2. Set Line Ending
 - In the Serial Monitor, set the line ending to **No line ending**. This ensures that the `$` character is sent as part of the command.
@@ -76,23 +90,22 @@ Received command: HelloWorld
 
 If you see this message, your serial communication is working! You are ready to move on to the next lesson step. Don't forget to stop the Serial Monitor before uploading new code to the Arduino board.
 
+#### Note, be sure to click the **Stop Monitoring** button before uploading new code to the Arduino board. This prevents any conflicts with the serial port.
+
 ### Step 2: Parsing and Executing Serial Commands
 
 Now, let's extend the `loop()` function to parse commands in the format `X|Y|$`, where `X` is the command type and `Y` is a parameter. We'll start by handling the 'A' command, which sets the RGB LED color:
 
+Add this code to the loop function before the `cmd = "";` line: and after the `Serial.println(cmd);` line.
+
+```cpp
+
 **Code Added:**
 ```cpp
-void loop() {
-  while (Serial.available()) {
-    String cmd = Serial.readStringUntil('$');
-    cmd.trim();
-    Serial.print("Received command: ");
-    Serial.println(cmd);
     // Parse command: expected format X|Y|$
     int sepIndex = cmd.indexOf('|');
     if(sepIndex < 0){
       Serial.print("Invalid command");
-      Serial.println(cmd);
       continue;
     }
     char commandType = cmd.charAt(0);
@@ -115,9 +128,6 @@ void loop() {
         Serial.println("Unknown command type");
         break;
     }
-    cmd = "";
-  }
-}
 ```
 
 **How it works:**
@@ -172,6 +182,7 @@ B|direction,speed|$
 - `speed` is the speed value (0-100)
 
 **Code Added:**
+Above the default case in the `switch` statement, add the following code to handle the 'B' command:
 ```cpp
 case 'B': {
   int commaIndex = arg1.indexOf(',');
@@ -205,6 +216,9 @@ case 'B': {
 This allows you to control the robot's movement interactively from the serial monitor.
 
 ---
+### Checkpoint: Test Motor Control with Serial Commands
+Upload and test the code with the following steps:
+### remember to stop the Serial Monitor before uploading new code to the Arduino board.
 
 
 
